@@ -25,6 +25,14 @@ public class IParentServiceImpl implements IParentService {
 	@Override
 	public Parent addParent(Parent parent) {
 		// TODO Auto-generated method stub
+		Student student = parent.getStudent();
+		if(student!=null) {
+			long studentId = student.getUserId();
+			Optional<Student> res_student=studentRepository.findById(studentId);
+			if(res_student.isPresent()) {
+				parent.setStudent(res_student.get());
+			}
+		}
 		return parentRepository.save(parent);
 	}
 

@@ -40,7 +40,7 @@ public class IConcernController {
 		return concernService.concerns();
 	}
 
-	@PostMapping(value = "/getParentConcerns/{parentId}")
+	@GetMapping(value = "/getParentConcerns/{parentId}")
 	public Concern getConcernsByParent(@PathVariable("parentId") int parentId) {
 		return concernService.concernsByParent(parentId);
 	}

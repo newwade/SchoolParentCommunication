@@ -23,11 +23,18 @@ public class IExamServiceImpl implements IExamService {
 	private IExamRepository examRepository;
 
 	@Autowired
-	private IClassIdRepository classIdRepository ;
+	private IClassIdRepository classIdRepository;
 
 	@Override
 	public Exam addExam(Exam exam) {
-		// TODO Auto-generated method stub
+		ClassId classId= exam.getClassId();
+		if (classId != null) {
+			long id = classId.getClassId();
+			Optional<ClassId> res_classId= classIdRepository.findById(id);
+			if (res_classId.isPresent()) {
+				exam.setClassId(res_classId.get());
+			}
+		}
 		return examRepository.save(exam);
 	}
 
@@ -46,7 +53,7 @@ public class IExamServiceImpl implements IExamService {
 		if (optional.isPresent()) {
 			examRepository.saveAndFlush(exam);
 		}
-		return exam;	
+		return exam;
 	}
 
 	@Override
@@ -59,10 +66,10 @@ public class IExamServiceImpl implements IExamService {
 	@Override
 	public Exam listAllExamsByClass(int classId) {
 		// TODO Auto-generated method stub
-		Optional<ClassId> class_= classIdRepository.findById((long) classId);
+		Optional<ClassId> class_ = classIdRepository.findById((long) classId);
 		if (class_.isPresent()) {
 			return examRepository.findByClassId(class_.get());
-			
+
 		}
 		return null;
 	}

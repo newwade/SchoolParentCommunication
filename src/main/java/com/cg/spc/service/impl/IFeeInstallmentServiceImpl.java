@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.cg.spc.entities.Fee;
 import com.cg.spc.entities.FeeInstallment;
+import com.cg.spc.entities.Parent;
 import com.cg.spc.entities.Student;
 import com.cg.spc.repository.IExamRepository;
 import com.cg.spc.repository.IFeeInstallmentRepository;
 import com.cg.spc.repository.IFeeRepository;
+import com.cg.spc.repository.IStudentRepository;
 import com.cg.spc.service.IFeeInstallmentService;
 
 @Service
@@ -21,17 +23,34 @@ public class IFeeInstallmentServiceImpl implements IFeeInstallmentService {
 	private IFeeInstallmentRepository feeInstallmentRepository ;
 	@Autowired
 	private IFeeRepository feeRepository ;
+	@Autowired
+	private IStudentRepository studentRepository;
 	
 	@Override
 	public FeeInstallment makePayment(FeeInstallment feeInstallment) {
 		// TODO Auto-generated method stub
+		Fee fee= feeInstallment.getFee();
+		if (fee!= null) {
+			long feeId = fee.getFeeId();
+			Optional<Fee> res_fee= feeRepository.findById(feeId);
+			if (res_fee.isPresent()) {
+				feeInstallment.setFee(res_fee.get());
+			}
+		}
 		return feeInstallmentRepository.save(feeInstallment);
 	}
 
 	@Override
-	public List<FeeInstallment> pendingInstallments(Student student) {
+	public FeeInstallment pendingInstallments(long id) {
 		// TODO Auto-generated method stub
-		return feeInstallmentRepository.findAll();
+		Optional<Student> student = studentRepository.findById(id);
+		if (student.isPresent()) {
+			Fee fee = feeRepository.findByStudent(student.get());
+			if(fee!=null) {
+				return feeInstallmentRepository.findByFee(fee);
+			}
+		}
+		return null;
 	}
 
 	@Override

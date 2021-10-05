@@ -11,7 +11,7 @@ public interface IFeeInstallmentService {
 
 	public FeeInstallment makePayment(FeeInstallment feeInstallment);
 
-	public List<FeeInstallment> pendingInstallments(Student student);
+	public FeeInstallment pendingInstallments(long id);
 
 
 	public FeeInstallment retrieveAllFeeInstallmentsByFee(int feeId);

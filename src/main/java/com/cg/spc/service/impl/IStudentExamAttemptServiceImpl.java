@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.spc.entities.Exam;
 import com.cg.spc.entities.Parent;
 import com.cg.spc.entities.Student;
 import com.cg.spc.entities.StudentExamAttempt;
+import com.cg.spc.repository.IExamRepository;
 import com.cg.spc.repository.IParentRepository;
 import com.cg.spc.repository.IStudentExamAttemptRepository;
 import com.cg.spc.repository.IStudentRepository;
@@ -20,10 +22,29 @@ public class IStudentExamAttemptServiceImpl implements IStudentExamAttemptServic
 	private IStudentExamAttemptRepository studentExamRepository;
 	@Autowired
 	private IStudentRepository studentRepository;
+	@Autowired
+	private IExamRepository examRepository;
 
 	@Override
 	public StudentExamAttempt addStudentExamAttempt(StudentExamAttempt studentExamAttempt) {
 		// TODO Auto-generated method stub
+		Student student = studentExamAttempt.getStudent();
+		if(student!=null) {
+			long studentId = student.getUserId();
+			Optional<Student> res_student=studentRepository.findById(studentId);
+			if(res_student.isPresent()) {
+				studentExamAttempt.setStudent(res_student.get());
+			}
+		}
+		
+		Exam exam= studentExamAttempt.getExam();
+		if(exam!=null) {
+			long examId = exam.getExamId();
+			Optional<Exam> res_exam=examRepository.findById(examId);
+			if(res_exam.isPresent()) {
+				studentExamAttempt.setExam(res_exam.get());
+			}
+		}
 		return studentExamRepository.save(studentExamAttempt);
 	}
 

@@ -57,12 +57,29 @@ public class FeeInstallment {
 		this.feePaymentDate = feePaymentDate;
 	}
 
-	public FeeInstallment(long feeInstallmentId, double feeInstallment, LocalDate dueDate, LocalDate feePaymentDate) {
+	public Fee getFee() {
+		return fee;
+	}
+
+	public void setFee(Fee fee) {
+		this.fee = fee;
+	}
+
+	/**
+	 * @param feeInstallmentId
+	 * @param feeInstallment
+	 * @param dueDate
+	 * @param feePaymentDate
+	 * @param fee
+	 */
+	public FeeInstallment(long feeInstallmentId, double feeInstallment, LocalDate dueDate, LocalDate feePaymentDate,
+			Fee fee) {
 		super();
 		this.feeInstallmentId = feeInstallmentId;
 		this.feeInstallment = feeInstallment;
 		this.dueDate = dueDate;
 		this.feePaymentDate = feePaymentDate;
+		this.fee = fee;
 	}
 
 	public FeeInstallment() {

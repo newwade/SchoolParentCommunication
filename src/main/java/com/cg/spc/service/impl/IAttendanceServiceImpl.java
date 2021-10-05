@@ -24,6 +24,14 @@ public class IAttendanceServiceImpl implements IAttendanceService {
 	@Override
 	public Attendance addAttendance(Attendance attendance) {
 		// TODO Auto-generated method stub
+		Student student = attendance.getStudent();
+		if(student!=null) {
+			long studentId = student.getUserId();
+			Optional<Student> res_student=studentRepository.findById(studentId);
+			if(res_student.isPresent()) {
+				attendance.setStudent(res_student.get());
+			}
+		}
 		return attendanceRepository.save(attendance);
 	}
 

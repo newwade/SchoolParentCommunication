@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.spc.entities.ClassId;
 import com.cg.spc.entities.Student;
 import com.cg.spc.entities.StudentExamAttempt;
+import com.cg.spc.repository.IClassIdRepository;
 import com.cg.spc.repository.IStudentRepository;
 import com.cg.spc.service.IStudentService;
 
@@ -16,10 +18,20 @@ public class IStudentServiceImpl implements IStudentService {
 
 	@Autowired
 	private IStudentRepository studentRepo;
+	
+	@Autowired
+	private IClassIdRepository classIdRepository;
 
 	@Override
 	public Student addStudent(Student student) {
-		// TODO Auto-generated method stub
+		ClassId classId = student.getCurrentClass();
+		if (classId != null) {
+			long id = classId.getClassId();
+			Optional<ClassId> res_classId = classIdRepository.findById(id);
+			if (res_classId.isPresent()) {
+				student.setCurrentClass(res_classId.get());
+			}
+		}
 		return studentRepo.save(student);
 	}
 

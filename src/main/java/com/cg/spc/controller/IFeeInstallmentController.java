@@ -29,10 +29,11 @@ public class IFeeInstallmentController {
 	public FeeInstallment createFeeInstallment(@RequestBody FeeInstallment feeInstallment) {
 		return feeInstallmentService.makePayment(feeInstallment);
 	}
-
-	@PostMapping(value = "/viewPending")
-	public List<FeeInstallment> getPendingInstallments(@RequestBody Student student) {
-		return feeInstallmentService.pendingInstallments(student);
+//create
+	
+	@GetMapping(value = "/viewPending/{studentId}")
+	public FeeInstallment getPendingInstallments(@PathVariable("studentId") long id) {
+		return feeInstallmentService.pendingInstallments(id);
 	}
 
 	@GetMapping(value = "/viewFeeInstallment/{id}")

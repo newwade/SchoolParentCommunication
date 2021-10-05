@@ -46,11 +46,26 @@ public class Parent {
 		this.emailId = emailId;
 	}
 
-	public Parent(long parentId, String mobileNumber, String emailId) {
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	/**
+	 * @param parentId
+	 * @param mobileNumber
+	 * @param emailId
+	 * @param student
+	 */
+	public Parent(long parentId, String mobileNumber, String emailId, Student student) {
 		super();
 		this.parentId = parentId;
 		this.mobileNumber = mobileNumber;
 		this.emailId = emailId;
+		this.student = student;
 	}
 
 	public Parent() {

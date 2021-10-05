@@ -27,7 +27,14 @@ public class IFeeServiceImpl implements IFeeService {
 
 	@Override
 	public Fee addFee(Fee fee) {
-		// TODO Auto-generated method stub
+		Student student = fee.getStudent();
+		if (student != null) {
+			long studentId = student.getUserId();
+			Optional<Student> res_student = studentRepo.findById(studentId);
+			if (res_student.isPresent()) {
+				fee.setStudent(res_student.get());
+			}
+		}
 		return feeRepository.save(fee);
 	}
 

@@ -27,6 +27,14 @@ public class IConcernServiceImpl implements IConcernService {
 	@Override
 	public Concern addConcern(Concern concern) {
 		// TODO Auto-generated method stub
+		Parent parent = concern.getParent();
+		if (parent != null) {
+			long parentId = parent.getParentId();
+			Optional<Parent> res_parent = parentRepository.findById(parentId);
+			if (res_parent.isPresent()) {
+				concern.setParent(res_parent.get());
+			}
+		}
 		return concernRepository.save(concern);
 	}
 
@@ -74,10 +82,8 @@ public class IConcernServiceImpl implements IConcernService {
 			concerns = concernRepository.findByParent(parent.get());
 		}
 		if (!concerns.isResolved()) {
-			if ((concerns.getConcernParty() + "").equals("PARENT")) {
-				return concerns;
-			}
-			return null;
+			return concerns;
+
 		}
 		return null;
 	}
