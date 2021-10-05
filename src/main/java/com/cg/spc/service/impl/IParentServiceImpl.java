@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.spc.entities.ClassId;
+import com.cg.spc.entities.Fee;
 import com.cg.spc.entities.Parent;
 import com.cg.spc.entities.Student;
 import com.cg.spc.repository.IFeeRepository;
@@ -14,15 +15,12 @@ import com.cg.spc.repository.IParentRepository;
 import com.cg.spc.repository.IStudentRepository;
 import com.cg.spc.service.IParentService;
 
-
 @Service
 public class IParentServiceImpl implements IParentService {
 	@Autowired
 	private IParentRepository parentRepository;
 	@Autowired
 	private IStudentRepository studentRepository;
-
-
 
 	@Override
 	public Parent addParent(Parent parent) {
@@ -33,7 +31,11 @@ public class IParentServiceImpl implements IParentService {
 	@Override
 	public Parent updateParent(Parent parent) {
 		// TODO Auto-generated method stub
-		return parentRepository.save(parent);
+		Optional<Parent> existingParentContainer = parentRepository.findById((long) parent.getParentId());
+		if (existingParentContainer.isPresent()) {
+			parentRepository.saveAndFlush(parent);
+		}
+		return parent;
 	}
 
 	@Override
@@ -46,8 +48,8 @@ public class IParentServiceImpl implements IParentService {
 	public Parent retrieveParentByStudent(int studentId) {
 		// TODO Auto-generated method stub
 		Optional<Student> student = studentRepository.findById((long) studentId);
-		if(student.isPresent()) {
-			return parentRepository.findByStudent(student.get());	
+		if (student.isPresent()) {
+			return parentRepository.findByStudent(student.get());
 		}
 		return null;
 

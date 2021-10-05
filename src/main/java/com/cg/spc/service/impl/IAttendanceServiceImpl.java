@@ -29,8 +29,11 @@ public class IAttendanceServiceImpl implements IAttendanceService {
 
 	@Override
 	public Attendance updateAttendance(Attendance attendance) {
-		// TODO Auto-generated method stub
-		return attendanceRepository.save(attendance);
+		Optional<Attendance> existingAttendanceContainer = attendanceRepository.findById(attendance.getAttendanceId());
+		if (existingAttendanceContainer.isPresent()) {
+			attendanceRepository.saveAndFlush(attendance);
+		}
+		return attendance;
 	}
 
 	@Override

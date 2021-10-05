@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.spc.entities.Student;
+import com.cg.spc.entities.StudentExamAttempt;
 import com.cg.spc.repository.IStudentRepository;
 import com.cg.spc.service.IStudentService;
 
@@ -25,7 +26,11 @@ public class IStudentServiceImpl implements IStudentService {
 	@Override
 	public Student updateStudent(Student student) {
 		// TODO Auto-generated method stub
-		return studentRepo.save(student);
+		Optional<Student> existingStudentContainer = studentRepo.findById((long) student.getUserId());
+		if (existingStudentContainer.isPresent()) {
+			studentRepo.saveAndFlush(student);
+		}
+		return student;
 	}
 
 	@Override

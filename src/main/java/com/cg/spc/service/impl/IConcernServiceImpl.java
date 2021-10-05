@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.spc.entities.Attendance;
 import com.cg.spc.entities.Concern;
 import com.cg.spc.entities.Parent;
 import com.cg.spc.entities.Student;
@@ -32,7 +33,11 @@ public class IConcernServiceImpl implements IConcernService {
 	@Override
 	public Concern updateConcern(Concern concern) {
 		// TODO Auto-generated method stub
-		return concernRepository.save(concern);
+		Optional<Concern> existingConcernContainer = concernRepository.findById((long) concern.getConcernId());
+		if (existingConcernContainer.isPresent()) {
+			concernRepository.saveAndFlush(concern);
+		}
+		return concern;
 	}
 
 	@Override
@@ -64,12 +69,12 @@ public class IConcernServiceImpl implements IConcernService {
 	public Concern unResolvedConcernsByParent(int parentId) {
 		// TODO Auto-generated method stub
 		Optional<Parent> parent = parentRepository.findById((long) parentId);
-		Concern concerns=null;
+		Concern concerns = null;
 		if (parent.isPresent()) {
 			concerns = concernRepository.findByParent(parent.get());
 		}
-		if(!concerns.isResolved()) {
-			if((concerns.getConcernParty()+"").equals("PARENT")) {
+		if (!concerns.isResolved()) {
+			if ((concerns.getConcernParty() + "").equals("PARENT")) {
 				return concerns;
 			}
 			return null;
