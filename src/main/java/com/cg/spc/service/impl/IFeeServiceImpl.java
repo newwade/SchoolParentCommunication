@@ -42,7 +42,7 @@ public class IFeeServiceImpl implements IFeeService {
 	public String deleteFee(int id) {
 		// TODO Auto-generated method stub
 		feeRepository.deleteById((long) id);
-		return "Fee with the id " + id + "payed";
+		return "Fee with the id " + id + " deleted";
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class IFeeServiceImpl implements IFeeService {
 	}
 
 	@Override
-	public Fee retrieveFeeByStudent(int id) {
+	public List<Fee> retrieveFeeByStudent(int id) {
 		// TODO Auto-generated method stub
 		Optional<Student> student = studentRepo.findById((long) id);
 		if (student.isPresent()) {
@@ -78,7 +78,7 @@ public class IFeeServiceImpl implements IFeeService {
 	 */
 
 	@Override
-	public Fee retrieveAllFeeByMonth(LocalDate date) {
+	public List<Fee> retrieveAllFeeByMonth(java.util.Date date) {
 
 		return feeRepository.findByStartMonthYear(date);
 	}

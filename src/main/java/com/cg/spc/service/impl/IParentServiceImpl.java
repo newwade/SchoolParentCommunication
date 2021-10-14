@@ -53,7 +53,7 @@ public class IParentServiceImpl implements IParentService {
 	}
 
 	@Override
-	public Parent retrieveParentByStudent(int studentId) {
+	public List<Parent> retrieveParentByStudent(int studentId) {
 		// TODO Auto-generated method stub
 		Optional<Student> student = studentRepository.findById((long) studentId);
 		if (student.isPresent()) {

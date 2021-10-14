@@ -20,7 +20,7 @@ import com.cg.spc.service.IFeeInstallmentService;
 import com.cg.spc.service.IParentService;
 
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/installment")
 public class IFeeInstallmentController {
 	@Autowired
 	private IFeeInstallmentService feeInstallmentService;
@@ -29,19 +29,19 @@ public class IFeeInstallmentController {
 	public FeeInstallment createFeeInstallment(@RequestBody FeeInstallment feeInstallment) {
 		return feeInstallmentService.makePayment(feeInstallment);
 	}
-//create
+
 	
 	@GetMapping(value = "/viewPending/{studentId}")
 	public FeeInstallment getPendingInstallments(@PathVariable("studentId") long id) {
 		return feeInstallmentService.pendingInstallments(id);
 	}
 
-	@GetMapping(value = "/viewFeeInstallment/{id}")
+	@GetMapping(value = "/viewFee/{id}")
 	public Optional<FeeInstallment> getFeeInstallment(@PathVariable("id") int id) {
 		return feeInstallmentService.retrieveFeeInstallmentById(id);
 	}
 
-	@PostMapping(value = "/viewAll/Fee/{feeId}")
+	@PostMapping(value = "/viewAll/{feeId}")
 	public FeeInstallment getAllFeeInstallment(@PathVariable("feeId") int feeId) {
 		return feeInstallmentService.retrieveAllFeeInstallmentsByFee(feeId);
 	}

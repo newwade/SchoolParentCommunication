@@ -1,6 +1,7 @@
 package com.cg.spc.repository;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,8 +14,8 @@ import com.cg.spc.entities.Exam;
 
 @Repository
 public interface IExamRepository extends JpaRepository<Exam, Long> {
-	public Exam findByDateOfExam(LocalDate date);
+	public List<Exam> findByDateOfExam(Date localDate);
 
-	public Exam findByClassId(ClassId classId);
+	public List<Exam> findByClassId(ClassId classId);
 
 }

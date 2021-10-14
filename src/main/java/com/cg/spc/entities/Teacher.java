@@ -15,11 +15,6 @@ public class Teacher {
 	@Column(name = "TEACHER_NAME")
 	private String name;
 
-//	@ElementCollection
-//	@ManyToOne(targetEntity=ClassId.class)
-//	@JoinColumn(name = "SUBJECT_CLASSES",nullable = true)
-//	private Map<Subject, List<ClassId>> subjectClasses;
-
 	public long getTeacherId() {
 		return teacherId;
 	}
@@ -36,19 +31,10 @@ public class Teacher {
 		this.name = name;
 	}
 
-//	public Map<Subject, List<ClassId>> getSubjectClasses() {
-//		return subjectClasses;
-//	}
-//
-//	public void setSubjectClasses(Map<Subject, List<ClassId>> subjectClasses) {
-//		this.subjectClasses = subjectClasses;
-//	}
-
 	public Teacher(long teacherId, String name) {
 		super();
 		this.teacherId = teacherId;
 		this.name = name;
-//		this.subjectClasses = subjectClasses;
 	}
 
 	public Teacher() {

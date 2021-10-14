@@ -1,6 +1,7 @@
 package com.cg.spc.repository;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,8 +15,8 @@ import com.cg.spc.entities.FeeInstallment;
 import com.cg.spc.entities.Student;
 @Repository
 public interface IFeeRepository extends JpaRepository<Fee, Long>{
-	public Fee findByStudent(Student student);
-	public Fee findByStartMonthYear(LocalDate startMonthYear);
+	public List<Fee> findByStudent(Student student);
+	public List<Fee> findByStartMonthYear(Date date);
 	
 
 }

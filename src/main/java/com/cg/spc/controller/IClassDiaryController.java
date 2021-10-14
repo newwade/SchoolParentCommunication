@@ -23,19 +23,14 @@ public class IClassDiaryController {
 	@Autowired
 	private IClassDiaryService classDiaryService;
 
-	@PostMapping(value = "/addClassDiary")
+	@PostMapping(value = "/add")
 	public ClassDiary addClassDiary(@RequestBody ClassDiary classDiary) {
 		return classDiaryService.addClassDiary(classDiary);
 
 	}
 	
-//	@PostMapping(value = "/getClassDiary")
-//	public ClassDiary getClassDiary(@RequestBody java.time.LocalDate localDate) {
-//		return classDiaryService.retrieveClassDiary(localDate);
-//
-//	}
-	
-	@GetMapping(value = "/getClassDiary/{id}")
+
+	@GetMapping(value = "/getDiary/{id}")
 	public Optional<ClassDiary> getClassDiary(@PathVariable ("id") long id) {
 		return classDiaryService.retrieveClassDiaryById(id);
 

@@ -42,15 +42,11 @@ public class IParentController {
 		return parentService.retrieveParentById(id);
 	}
 	
-//
-//	@PostMapping(value = "/getParent/classId")
-//	public List<Parent> getStudentByClassId(@RequestBody ClassId classId) {
-//		return parentService.retrieveParentListByClass(classId);
-//	}
+
 	
 
 	@GetMapping(value = "/viewParent/student/{studentId}")
-	public Parent getParentByStudent(@PathVariable("id") int studentId) {
+	public List<Parent>getParentByStudent(@PathVariable("studentId") int studentId) {
 		return parentService.retrieveParentByStudent(studentId);
 	}
 

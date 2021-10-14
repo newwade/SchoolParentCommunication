@@ -1,6 +1,7 @@
 package com.cg.spc.service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +18,7 @@ public interface IFeeService {
 
 	public Optional<Fee> retrieveFee(int id);
 
-	public Fee retrieveFeeByStudent(int id);
+	public List<Fee> retrieveFeeByStudent(int id);
 
-	public Fee retrieveAllFeeByMonth(LocalDate date);
+	public List<Fee> retrieveAllFeeByMonth(Date date);
 }

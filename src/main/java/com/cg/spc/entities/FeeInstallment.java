@@ -1,6 +1,7 @@
 package com.cg.spc.entities;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -16,10 +17,14 @@ public class FeeInstallment {
 	private double feeInstallment;
 
 	@Column(name = "DUE_DATE")
-	private LocalDate dueDate;
+	@Temporal(TemporalType.DATE)
+
+	private Date dueDate;
 
 	@Column(name = "FEE_PAYMENT_DATE")
-	private LocalDate feePaymentDate;
+	@Temporal(TemporalType.DATE)
+
+	private Date feePaymentDate;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "FEE_COLUMN")
@@ -41,19 +46,19 @@ public class FeeInstallment {
 		this.feeInstallment = feeInstallment;
 	}
 
-	public LocalDate getDueDate() {
+	public Date getDueDate() {
 		return dueDate;
 	}
 
-	public void setDueDate(LocalDate dueDate) {
+	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
 
-	public LocalDate getFeePaymentDate() {
+	public Date getFeePaymentDate() {
 		return feePaymentDate;
 	}
 
-	public void setFeePaymentDate(LocalDate feePaymentDate) {
+	public void setFeePaymentDate(Date feePaymentDate) {
 		this.feePaymentDate = feePaymentDate;
 	}
 
@@ -72,8 +77,7 @@ public class FeeInstallment {
 	 * @param feePaymentDate
 	 * @param fee
 	 */
-	public FeeInstallment(long feeInstallmentId, double feeInstallment, LocalDate dueDate, LocalDate feePaymentDate,
-			Fee fee) {
+	public FeeInstallment(long feeInstallmentId, double feeInstallment, Date dueDate, Date feePaymentDate, Fee fee) {
 		super();
 		this.feeInstallmentId = feeInstallmentId;
 		this.feeInstallment = feeInstallment;

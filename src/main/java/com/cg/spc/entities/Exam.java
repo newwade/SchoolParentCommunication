@@ -2,6 +2,7 @@ package com.cg.spc.entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -19,8 +20,8 @@ public class Exam {
 	private long examId;
 
 	@Column(name = "DATE_TIME_OF_EXAM")
-	@JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
-	private LocalDate dateOfExam;
+	@Temporal(TemporalType.DATE)
+	private Date dateOfExam;
 
 	@Column(name = "MAX_MARKS")
 	private int maxMarks;
@@ -45,11 +46,11 @@ public class Exam {
 		this.examId = examId;
 	}
 
-	public LocalDate getDateOfExam() {
+	public Date getDateOfExam() {
 		return dateOfExam;
 	}
 
-	public void setDateOfExam(LocalDate dateOfExam) {
+	public void setDateOfExam(Date dateOfExam) {
 		this.dateOfExam = dateOfExam;
 	}
 
@@ -93,7 +94,7 @@ public class Exam {
 	 * @param examType
 	 * @param classId
 	 */
-	public Exam(long examId, LocalDate dateOfExam, int maxMarks, Subject subject, ExamType examType,
+	public Exam(long examId, Date dateOfExam, int maxMarks, Subject subject, ExamType examType,
 			ClassId classId) {
 		super();
 		this.examId = examId;

@@ -42,12 +42,12 @@ public class IClassIdController {
 
 	}
 
-	@GetMapping(value = "/getNotes/{id}")
+	@GetMapping(value = "/getClass/{id}")
 	public Optional<ClassId> getStudent(@PathVariable("id") long id) {
 		return classIdService.retrieveClassById(id);
 	}
 
-	@GetMapping(value = "/getAllNotes")
+	@GetMapping(value = "/getAllClass")
 	public List<ClassId> getStudent() {
 		return classIdService.retrieveAllClass();
 	}

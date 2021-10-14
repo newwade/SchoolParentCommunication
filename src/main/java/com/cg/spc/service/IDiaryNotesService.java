@@ -19,8 +19,8 @@ public interface IDiaryNotesService {
 
 	public List<DiaryNotes> retrieveAllDiaryNotes();
 
-	public List<DiaryNotes> retrieveAllDiaryNotes(LocalDate localDate);
-
-	public List<DiaryNotes> retrieveAllDiaryNotes(Subject subject);
+//	public List<DiaryNotes> retrieveAllDiaryNotes(LocalDate localDate);
+//
+//	public List<DiaryNotes> retrieveAllDiaryNotes(Subject subject);
 
 }

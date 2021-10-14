@@ -1,6 +1,7 @@
 package com.cg.spc.repository;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,9 +15,9 @@ import com.cg.spc.entities.Student;
 @Component
 public interface IAttendanceRepository extends JpaRepository<Attendance, Long>{
 	
-	public Attendance findByDateOfClass(LocalDate date);
+	public List<Attendance> findByDateOfClass(Date date);
 	
-	public Attendance findByStudent(Student student);
+	public List<Attendance> findByStudent(Student student);
 
 
 }

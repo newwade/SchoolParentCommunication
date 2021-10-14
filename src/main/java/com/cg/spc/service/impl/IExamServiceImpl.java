@@ -1,6 +1,7 @@
 package com.cg.spc.service.impl;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,14 +58,14 @@ public class IExamServiceImpl implements IExamService {
 	}
 
 	@Override
-	public Exam listAllExamsByDate(LocalDate localDate) {
+	public List<Exam> listAllExamsByDate(Date localDate) {
 		// TODO Auto-generated method stub
 		return examRepository.findByDateOfExam(localDate);
 
 	}
 
 	@Override
-	public Exam listAllExamsByClass(int classId) {
+	public List<Exam> listAllExamsByClass(int classId) {
 		// TODO Auto-generated method stub
 		Optional<ClassId> class_ = classIdRepository.findById((long) classId);
 		if (class_.isPresent()) {

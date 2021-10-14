@@ -1,6 +1,7 @@
 package com.cg.spc.entities;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -13,12 +14,13 @@ public class Attendance {
 	private long attendanceId;
 
 	@Column(name = "DATE_OF_CLASS")
-	private LocalDate dateOfClass;
+	@Temporal(TemporalType.DATE)
+	private Date dateOfClass;
 
 	@Column(name = "PRESENT")
 	private boolean present;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "STUDENT")
 	private Student student;
 
@@ -30,11 +32,11 @@ public class Attendance {
 		this.attendanceId = attendanceId;
 	}
 
-	public LocalDate getDateOfClass() {
+	public Date getDateOfClass() {
 		return dateOfClass;
 	}
 
-	public void setDateOfClass(LocalDate dateOfClass) {
+	public void setDateOfClass(Date dateOfClass) {
 		this.dateOfClass = dateOfClass;
 	}
 
@@ -60,7 +62,7 @@ public class Attendance {
 	 * @param present
 	 * @param student
 	 */
-	public Attendance(long attendanceId, LocalDate dateOfClass, boolean present, Student student) {
+	public Attendance(long attendanceId, Date dateOfClass, boolean present, Student student) {
 		super();
 		this.attendanceId = attendanceId;
 		this.dateOfClass = dateOfClass;

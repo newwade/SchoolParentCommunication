@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.spc.entities.Attendance;
 import com.cg.spc.entities.ClassId;
 import com.cg.spc.entities.Student;
 import com.cg.spc.entities.StudentExamAttempt;
+import com.cg.spc.repository.IAttendanceRepository;
 import com.cg.spc.repository.IClassIdRepository;
 import com.cg.spc.repository.IStudentRepository;
 import com.cg.spc.service.IStudentService;
@@ -18,9 +20,12 @@ public class IStudentServiceImpl implements IStudentService {
 
 	@Autowired
 	private IStudentRepository studentRepo;
-	
+
 	@Autowired
 	private IClassIdRepository classIdRepository;
+
+	@Autowired
+	private IAttendanceRepository attendanceRepository;
 
 	@Override
 	public Student addStudent(Student student) {
@@ -46,11 +51,18 @@ public class IStudentServiceImpl implements IStudentService {
 	}
 
 	@Override
-	public String deleteStudent(Student student) {
+	public String deleteStudent(long id) {
 		// TODO Auto-generated method stub
-		int id = (int) student.getUserId();
-		studentRepo.delete(student);
-		return "Deleted Student with the id : " + id;
+		Optional<Student> student = studentRepo.findById((long) id);
+		if (student.isPresent()) {
+			List<Attendance> att = attendanceRepository.findByStudent(student.get());
+			if (att != null) {
+				attendanceRepository.deleteAll(att);
+				attendanceRepository.flush();
+			}
+		}
+		studentRepo.deleteById(id);
+		return " Student with the id : " + id + " deleted";
 	}
 
 	@Override

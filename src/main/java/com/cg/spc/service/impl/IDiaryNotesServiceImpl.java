@@ -58,16 +58,16 @@ public class IDiaryNotesServiceImpl implements IDiaryNotesService {
 		return diaryNotesRepository.findAll();
 	}
 
-	@Override
-	public List<DiaryNotes> retrieveAllDiaryNotes(LocalDate localDate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<DiaryNotes> retrieveAllDiaryNotes(Subject subject) {
-		// TODO Auto-generated method stub
-		return diaryNotesRepository.findAll();
-	}
+//	@Override
+//	public List<DiaryNotes> retrieveAllDiaryNotes(LocalDate localDate) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public List<DiaryNotes> retrieveAllDiaryNotes(Subject subject) {
+//		// TODO Auto-generated method stub
+//		return diaryNotesRepository.findAll();
+//	}
 
 }

@@ -11,6 +11,6 @@ import com.cg.spc.entities.Parent;
 import com.cg.spc.entities.Student;
 @Repository
 public interface IParentRepository extends JpaRepository<Parent, Long> {
-	public Parent findByStudent(Student student);
+	public List<Parent> findByStudent(Student student);
 
 }

@@ -56,15 +56,5 @@ public class IDiaryNotesController {
 		return diaryNotesService.retrieveAllDiaryNotes();
 	}
 	
-//	@PostMapping(value = "/getAllNotes")
-//	public List<DiaryNotes> getAllNotes(@RequestBody LocalDate date) {
-//		return diaryNotesService.retrieveAllDiaryNotes(date);
-//
-//	}
-//
-//	@PostMapping(value = "/getAllNotes/subject")
-//	public List<DiaryNotes> getAllNotesBySubject(@RequestBody Subject subject) {
-//		return diaryNotesService.retrieveAllDiaryNotes(subject);
-//
-//	}
+
 }

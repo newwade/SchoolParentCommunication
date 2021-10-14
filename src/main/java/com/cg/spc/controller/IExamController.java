@@ -1,6 +1,7 @@
 package com.cg.spc.controller;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +30,7 @@ public class IExamController {
 	@Autowired
 	private IExamService examService;
 
-	@PostMapping(value = "/add")
+	@PostMapping(value = "/create")
 	public Exam createExam(@RequestBody Exam exam) {
 		return examService.addExam(exam);
 
@@ -41,7 +42,7 @@ public class IExamController {
 
 	}
 
-	@DeleteMapping(value = "/delete/{id}")
+	@DeleteMapping(value = "/exam/{id}")
 	public String deleteExam(@PathVariable("id") int id) {
 		return examService.deleteExam(id);
 	}
@@ -52,20 +53,16 @@ public class IExamController {
 	}
 
 	@GetMapping(value = "/getExam/class/{classId}")
-	public Exam getExamByClass(@PathVariable("classId") int classId) {
+	public List<Exam> getExamByClass(@PathVariable("classId") int classId) {
 		return examService.listAllExamsByClass(classId);
 	}
 
-//	@PostMapping(value = "/getExam/student")
-//	public List<Exam> getExamByClass(@RequestBody Student student) {
-//		return examService.listAllExamsByStudent(student);
-//	}
 	
 	//need to convert type
 	@GetMapping(value = "/getExam/{date}")
-	public Exam getExamByClass(@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable("date") LocalDate date) {
-		System.out.println(date);
+	public List<Exam> getExamByClass(@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable("date") Date date) {
 		return examService.listAllExamsByDate(date);
+
 	}
 
 }

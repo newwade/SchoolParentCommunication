@@ -21,16 +21,16 @@ public class IClassDiaryServiceImpl implements IClassDiaryService {
 		return classDiaryRepository.save(classDiary);
 	}
 
-//	@Override
-//	public ClassDiary retrieveClassDiary(LocalDate localDate) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
 	@Override
 	public Optional<ClassDiary> retrieveClassDiaryById(Long id) {
 		// TODO Auto-generated method stub
 		return classDiaryRepository.findById(id);
 	}
+
+//	@Override
+//	public ClassDiary retrieveClassDiary(LocalDate localDate) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 }

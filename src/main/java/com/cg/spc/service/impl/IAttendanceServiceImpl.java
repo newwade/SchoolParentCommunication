@@ -1,6 +1,9 @@
 package com.cg.spc.service.impl;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,13 +48,18 @@ public class IAttendanceServiceImpl implements IAttendanceService {
 	}
 
 	@Override
-	public Attendance listAttendanceByMonth(LocalDate date) {
+	public List<Attendance> listAttendanceByMonth(Date date) {
 		// TODO Auto-generated method stub
-		return attendanceRepository.findByDateOfClass(date);
+		List<Attendance> attendance= attendanceRepository.findByDateOfClass(date);
+		Collections.sort(attendance,new Comparator<Attendance>() {
+			public int compare(Attendance m1,Attendance m2) {return m1.getDateOfClass().compareTo(m2.getDateOfClass());}
+		});
+		return attendance;
+		
 	}
 
 	@Override
-	public Attendance listAttendanceByStudent(int studentId) {
+	public List<Attendance> listAttendanceByStudent(int studentId) {
 		// TODO Auto-generated method stub
 		Optional<Student> student = studentRepository.findById((long) studentId);
 		if (student.isPresent()) {

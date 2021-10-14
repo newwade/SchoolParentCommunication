@@ -48,12 +48,12 @@ public class IFeeController {
 	}
 
 	@PostMapping(value = "/viewFee/Student/{id}")
-	public Fee getFeeByStudent(@PathVariable("id") int id) {
+	public List<Fee> getFeeByStudent(@PathVariable("id") int id) {
 		return feeService.retrieveFeeByStudent(id);
 	}
 
 	@GetMapping(value = "/viewFee/month/{month}")
-	public Fee getFeeByMonth(@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable("month") LocalDate from) {
+	public List<Fee> getFeeByMonth(@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable("month") Date from) {
 		return feeService.retrieveAllFeeByMonth(from);
 	}
 

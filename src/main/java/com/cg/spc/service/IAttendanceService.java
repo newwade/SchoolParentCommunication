@@ -1,6 +1,7 @@
 package com.cg.spc.service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -14,8 +15,8 @@ public interface IAttendanceService {
 
 	public Attendance updateAttendance(Attendance attendance);
 
-	public Attendance listAttendanceByMonth(LocalDate date);
+	public List<Attendance> listAttendanceByMonth(Date date);
 
-	public Attendance listAttendanceByStudent(int studentId);
+	public List<Attendance> listAttendanceByStudent(int studentId);
 
 }

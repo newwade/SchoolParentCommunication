@@ -36,10 +36,10 @@ public class IStudentController {
 		return student;
 	}
 
-	@DeleteMapping(value = "/delete")
-	public Student deleteStudent(@RequestBody Student student) {
-		studentService.deleteStudent(student);
-		return student;
+	@DeleteMapping(value = "/delete/{id}")
+	public String deleteStudent(@PathVariable long id) {
+		return studentService.deleteStudent(id);
+		
 	}
 
 	@GetMapping(value = "/viewStudents")

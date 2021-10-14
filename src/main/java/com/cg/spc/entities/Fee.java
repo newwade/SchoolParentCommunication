@@ -1,6 +1,7 @@
 package com.cg.spc.entities;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -22,11 +23,12 @@ public class Fee {
 	private double totalFeesReceived;
 
 	@Column(name = "STARTING_MONTH")
-	@JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
-	private LocalDate startMonthYear;
+	@Temporal(TemporalType.DATE)
+	private Date startMonthYear;
 
 	@Column(name = "ENDING_MONTH")
-	private LocalDate endMonthYear;
+	@Temporal(TemporalType.DATE)
+	private Date endMonthYear;
 
 	public Student getStudent() {
 		return student;
@@ -64,24 +66,24 @@ public class Fee {
 		this.totalFeesReceived = totalFeesReceived;
 	}
 
-	public LocalDate getStartMonthYear() {
+	public Date getStartMonthYear() {
 		return startMonthYear;
 	}
 
-	public void setStartMonthYear(LocalDate startMonthYear) {
+	public void setStartMonthYear(Date startMonthYear) {
 		this.startMonthYear = startMonthYear;
 	}
 
-	public LocalDate getEndMonthYear() {
+	public Date getEndMonthYear() {
 		return endMonthYear;
 	}
 
-	public void setEndMonthYear(LocalDate endMonthYear) {
+	public void setEndMonthYear(Date endMonthYear) {
 		this.endMonthYear = endMonthYear;
 	}
 
-	public Fee(long feeId, double totalFeesDue, double totalFeesReceived, LocalDate startMonthYear,
-			LocalDate endMonthYear,Student student) {
+	public Fee(long feeId, double totalFeesDue, double totalFeesReceived, Date startMonthYear,
+			Date endMonthYear,Student student) {
 		super();
 		this.feeId = feeId;
 		this.totalFeesDue = totalFeesDue;

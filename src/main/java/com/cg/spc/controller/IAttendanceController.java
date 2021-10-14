@@ -1,6 +1,7 @@
 package com.cg.spc.controller;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +40,13 @@ public class IAttendanceController {
 	}
 	
 	@PostMapping(value = "/getAttendance/{date}")
-	public Attendance getAttendanceByDate(@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable("date") LocalDate date) {
+	public List<Attendance> getAttendanceByDate(@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable("date") Date date) {
 		return attendanceService.listAttendanceByMonth(date);
 
 	}
 
-	@GetMapping(value = "/get/student/{studentId}")
-	public Attendance getAttendanceByStudent(@PathVariable("studentId") int studentId) {
+	@GetMapping(value = "/getByStudent/{studentId}")
+	public List<Attendance> getAttendanceByStudent(@PathVariable("studentId") int studentId) {
 		return attendanceService.listAttendanceByStudent(studentId);
 
 	}

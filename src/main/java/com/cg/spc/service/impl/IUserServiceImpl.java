@@ -25,11 +25,12 @@ public class IUserServiceImpl implements IUserService {
 	public User signIn(User user) {
 		// TODO Auto-generated method stub
 		User userNow = userRepository.findByUserName(user.getUserName());
-
-		if (user.getPassword().equals(userNow.getPassword())) {
-			return userNow;
+		if (userNow != null) {
+			if (user.getPassword().equals(userNow.getPassword())) {
+				return userNow;
+			}
 		}
-		
+
 		return null;
 	}
 
@@ -38,8 +39,10 @@ public class IUserServiceImpl implements IUserService {
 		// TODO Auto-generated method stub
 		User userNow = userRepository.findByUserName(user.getUserName());
 
-		if (user.getPassword().equals(userNow.getPassword())) {
-			return userNow;
+		if (userNow != null) {
+			if (user.getPassword().equals(userNow.getPassword())) {
+				return userNow;
+			}
 		}
 		return null;
 	}

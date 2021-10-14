@@ -12,9 +12,7 @@ public class DiaryNotes {
 	@Column(name = "DIARY_NOTES_ID")
 	private long diaryNotesId;
 
-//	@ElementCollection  
-//	@Column(name = "NOTES")
-//	private Map<Subject, String> notes;
+
 	private String notes;
 
 	public String getNotes() {
@@ -33,13 +31,7 @@ public class DiaryNotes {
 		this.diaryNotesId = diaryNotesId;
 	}
 
-//	public Map<Subject, String> getNotes() {
-//		return notes;
-//	}
-//
-//	public void setNotes(Map<Subject, String> notes) {
-//		this.notes = notes;
-//	}
+
 
 	/**
 	 * @param diaryNotesId

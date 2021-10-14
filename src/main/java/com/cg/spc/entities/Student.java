@@ -1,6 +1,7 @@
 package com.cg.spc.entities;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -14,7 +15,8 @@ public class Student {
 	private long userId;
 
 	@Column(name = "DATE_OF_BIRTH")
-	private LocalDate dateOfBirth;
+	@Temporal(TemporalType.DATE)
+	private Date dateOfBirth;
 
 	@Column(name = "NAME")
 	private String name;
@@ -49,11 +51,11 @@ public class Student {
 		this.userId = userId;
 	}
 
-	public LocalDate getDateOfBirth() {
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(LocalDate dateOfBirth) {
+	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -124,7 +126,7 @@ public class Student {
 	 * @param address
 	 * @param classDiary
 	 */
-	public Student(long userId, LocalDate dateOfBirth, String name, String emailId, String mobileNumber,
+	public Student(long userId, Date dateOfBirth, String name, String emailId, String mobileNumber,
 			ClassId currentClass, Subject subject, Address address, ClassDiary classDiary) {
 		super();
 		this.userId = userId;

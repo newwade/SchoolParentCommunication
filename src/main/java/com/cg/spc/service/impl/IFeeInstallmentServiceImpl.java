@@ -45,7 +45,7 @@ public class IFeeInstallmentServiceImpl implements IFeeInstallmentService {
 		// TODO Auto-generated method stub
 		Optional<Student> student = studentRepository.findById(id);
 		if (student.isPresent()) {
-			Fee fee = feeRepository.findByStudent(student.get());
+			Fee fee =  feeRepository.findByStudent(student.get()).get(0);
 			if(fee!=null) {
 				return feeInstallmentRepository.findByFee(fee);
 			}

@@ -15,7 +15,7 @@ public interface IParentService {
 
 	public List<Parent> retrieveParentListByClass(ClassId classId);
 
-	public Parent retrieveParentByStudent(int studentId);
+	public List<Parent> retrieveParentByStudent(int studentId);
 
 	public Optional<Parent> retrieveParentById(int id);
 }

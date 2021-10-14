@@ -40,12 +40,12 @@ public class IConcernController {
 		return concernService.concerns();
 	}
 
-	@GetMapping(value = "/getParentConcerns/{parentId}")
+	@GetMapping(value = "/getConcerns/{parentId}")
 	public Concern getConcernsByParent(@PathVariable("parentId") int parentId) {
 		return concernService.concernsByParent(parentId);
 	}
 
-	@GetMapping(value = "/getUnResolved/concerns")
+	@GetMapping(value = "/getUnResolved/")
 	public List<Concern> getUnResolvedConcerns() {
 		return concernService.unResolvedConcerns();
 	}

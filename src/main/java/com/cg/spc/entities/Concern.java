@@ -22,7 +22,11 @@ public class Concern {
 	@Enumerated(value = EnumType.STRING)
 	@Column(name = "CONCERN_PARTY")
 	private ConcernParty concernParty;
-
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "PARENT")
+	private Parent parent;
+	
 	public ConcernType getConcernType() {
 		return concernType;
 	}
@@ -47,9 +51,7 @@ public class Concern {
 		this.parent = parent;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "PARENT")
-	private Parent parent;
+
 
 	public int getConcernId() {
 		return concernId;
