@@ -14,7 +14,7 @@ public class SchoolParentCommunicationApp1Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SchoolParentCommunicationApp1Application.class, args);
-		System.out.println("listening on the port 9090...");
+		System.out.println("listening on the port 8081...");
 	}
 
 }
