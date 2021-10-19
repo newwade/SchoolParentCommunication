@@ -52,7 +52,7 @@ public class SwaggerConfig {
 
                 .version("1.0.0")
 
-                .contact(new Contact("abhilash", "abc@netflix", "contact@contact.com"))
+                .contact(new Contact("", "", ""))
 
                 .build();
 

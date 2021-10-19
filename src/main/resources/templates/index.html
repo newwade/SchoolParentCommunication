@@ -24,16 +24,17 @@
 <body>
 
 
-<div class="container my-2">
+<div class="container my-2 text-center">
 
-    <h1 class="text-center">Login</h1>
-    <form>
-    	<input type ="text" />
-    	<input type="password"/>
-    	 <a th:href="@{/showNewEmployeeForm}" class="btn btn-primary btn-sm mb-3"> Login </a>
-    	
+    <h1 >Login</h1>	
+    <form class="container d-flex flex-column  align-items-center w-25 ">
+    
+    	<input type ="text" class="mb-md-2 p-2 w-100" placeholder="username"/>
+    	<input type="password" class="mb-md-2 p-2 w-100" placeholder="Password"/>
+    	 <a th:href="@{/swagger-ui.html}" class="btn btn-primary btn-sm mb-3 p-2 w-100 text-white "> Login </a>
+    
     </form>
-   	<p>Don't have an account ? <a th:ref="@{/showNewEmployeeForm}">Sign up</a></p>
+   	<p>Don't have an account ? <a href="/swagger-ui.html">Sign up</a></p>
     
 
 </div>
